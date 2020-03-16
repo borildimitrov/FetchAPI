@@ -3,6 +3,7 @@ fetch('https://randomuser.me/api/?results=6')
         .then((response) => response.json())
         // tslint:disable-next-line:only-arrow-functions
         .then(function (data) {
+          deleteUser();
           let users = data.results;
           console.log(users);
           return users.map(function (user){
@@ -19,10 +20,12 @@ constructor(fName, lName, imageSRC){
     this.lName = lName;
     this.imageSRC = imageSRC;
     createCard(this.fName,this.lName,this.imageSRC);
-    
 }
 }
-
+    function deleteUser(){
+    var Users = document.getElementById("Users");
+    Users.innerHTML = '';
+    }
 function createCard(fName,lName,imageSRC){
     var newDiv = document.createElement("div");
     newDiv.className = "card";
@@ -42,6 +45,6 @@ function createCard(fName,lName,imageSRC){
     lastName.style = "float-right";
     nameHolder.appendChild(firstName);
     nameHolder.appendChild(lastName);
-    newDiv.appendChild(nameHolder);     
-    document.body.appendChild(newDiv);       
+    newDiv.appendChild(nameHolder);    
+    document.getElementById("Users").appendChild(newDiv);       
 }
